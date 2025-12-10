@@ -8,11 +8,25 @@ public class FIFOCachePolicy implements CachePolicy {
  
     // TODO implementar
     public String get(int key) {
-        return null;
+         Pair p = queue.get(key);
+
+        if (!queue.contains(key)) {
+            return "null";
+        } else {
+            return p.getValue();
+        }
     }
 
     // TODO implementar
     public void put(int key, String value) {
+        Pair p = new Pair(key, value);
+
+        if (queue.isFull()) {
+            queue.removeFirst();
+            queue.addLast(p);
+        } else {
+            queue.addLast(p);
+        }
     }
 
     public String toString() {
