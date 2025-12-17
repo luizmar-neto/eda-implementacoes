@@ -66,6 +66,14 @@ public class LFUCachePolicy {
     
     // tem que ser O(1)
     private void updateFreq(Node node) {
+        int freq = node.freq;
+        DoublyLinkedList listaAntiga = freqToList.get(freq);
+        listaAntiga.remove(node);
+        if (freq == minFreq && listaAntiga.isEmpty()) min Freq++;
+        node.freq++;
+        freqToList
+            .computeIfAbsent(node.freq, f -> new DoublyLinkedList())
+            .addFirst(node);
     }
     
     // tem que ser O(1)
